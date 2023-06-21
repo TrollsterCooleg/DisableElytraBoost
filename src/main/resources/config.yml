@@ -1,0 +1,6 @@
+# Set to message you want to be sent when a player attempts to elytra boost without permission.
+# Uses minimessage. https://docs.advntr.dev/minimessage/format.html for more info.
+
+# If you erase this message, it won't send anything.
+
+message: "<red><bold>You cannot boost your elytra with fireworks!</bold></red>"
