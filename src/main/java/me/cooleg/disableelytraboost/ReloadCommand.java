@@ -19,7 +19,7 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         main.reloadConfig();
-        sender.sendMessage(message);
+        main.getAudiences().players().sendMessage(message);
         return true;
     }
 
