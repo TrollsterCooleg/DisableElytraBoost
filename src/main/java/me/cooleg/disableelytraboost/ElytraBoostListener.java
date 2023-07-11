@@ -1,5 +1,6 @@
 package me.cooleg.disableelytraboost;
 
+import me.cooleg.disableelytraboost.util.Config;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -9,18 +10,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
 
 public class ElytraBoostListener implements Listener {
 
 
     private final BukkitAudiences audiences;
-    private static final MiniMessage mini = MiniMessage.miniMessage();
-    private static Component message;
-    private static boolean sendMessage;
+    private final Config config;
 
-    public ElytraBoostListener(String main, BukkitAudiences audiences) {
-        loadConfig(main);
+    public ElytraBoostListener(Config config, BukkitAudiences audiences) {
+        this.config = config;
         this.audiences = audiences;
     }
 
@@ -31,15 +29,17 @@ public class ElytraBoostListener implements Listener {
         if (event.getItem().getType() != Material.FIREWORK_ROCKET) {return;}
         if (!event.getPlayer().isGliding()) {return;}
         if (event.getPlayer().hasPermission("elytraboost.bypass")) {return;}
+        switch (config.getListType()) {
+            case WHITELIST -> {
+                if (config.getWorldList().contains(event.getPlayer().getWorld())) {return;}
+            }
+            case BLACKLIST -> {
+                if (!config.getWorldList().contains(event.getPlayer().getWorld())) {return;}
+            }
+        }
         event.setCancelled(true);
-        if (!sendMessage) {return;}
-        audiences.player(event.getPlayer()).sendMessage(message);
-    }
-
-    public static void loadConfig(String s) {
-        if (s == null || s.isEmpty()) {sendMessage = false; return;}
-        message = mini.deserialize(s);
-        sendMessage = true;
+        if (!config.shouldSendMessage()) {return;}
+        audiences.player(event.getPlayer()).sendMessage(config.getMessage());
     }
 
 }

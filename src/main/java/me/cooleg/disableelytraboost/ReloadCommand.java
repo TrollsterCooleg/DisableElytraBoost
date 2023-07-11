@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public class ReloadCommand implements CommandExecutor {
 
     private final DisableElytraBoost main;
+
     private final Component message = Component.text("Reloaded successfully!").color(NamedTextColor.GREEN);
 
     public ReloadCommand(DisableElytraBoost main) {
@@ -19,7 +20,7 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         main.reloadConfig();
-        main.getAudiences().players().sendMessage(message);
+        main.getAudiences().sender(sender).sendMessage(message);
         return true;
     }
 

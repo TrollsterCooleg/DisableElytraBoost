@@ -1,6 +1,14 @@
 # Set to message you want to be sent when a player attempts to elytra boost without permission.
 # Uses minimessage. https://docs.advntr.dev/minimessage/format.html for more info.
 
-# If you erase this message, it won't send anything.
+# If you make message empty quotes, it won't send anything.
 
 message: "<red><bold>You cannot boost your elytra with fireworks!</bold></red>"
+
+# List of worlds to explicitly allow/disallow flying with eltrya in.
+world-list: []
+
+# World list type. "Whitelist" to only allow those worlds to be flown in,
+# Blacklist to specifically disallow it in that specific world, or Disabled to disable
+# the world list functionality.
+world-list-type: "Disabled"
