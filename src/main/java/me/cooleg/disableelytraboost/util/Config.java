@@ -1,17 +1,15 @@
 package me.cooleg.disableelytraboost.util;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 public class Config {
-    private final MiniMessage mini = MiniMessage.miniMessage();
 
-    private Component message;
+    private String message;
     private boolean sendMessage;
     private final Collection<World> worldList = new HashSet<>();
     private WorldListType listType;
@@ -26,7 +24,7 @@ public class Config {
         if (msg == null || msg.isEmpty()) {
             sendMessage = false;
         } else {
-            message = mini.deserialize(msg);
+            message = ChatColor.translateAlternateColorCodes('&', msg);
             sendMessage = true;
         }
 
@@ -52,7 +50,7 @@ public class Config {
         }
     }
 
-    public Component getMessage() {
+    public String getMessage() {
         return message;
     }
 

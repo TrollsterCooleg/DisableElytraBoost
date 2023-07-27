@@ -1,9 +1,6 @@
 package me.cooleg.disableelytraboost;
 
 import me.cooleg.disableelytraboost.util.Config;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,12 +11,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class ElytraBoostListener implements Listener {
 
 
-    private final BukkitAudiences audiences;
     private final Config config;
 
-    public ElytraBoostListener(Config config, BukkitAudiences audiences) {
+    public ElytraBoostListener(Config config) {
         this.config = config;
-        this.audiences = audiences;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -39,7 +34,7 @@ public class ElytraBoostListener implements Listener {
         }
         event.setCancelled(true);
         if (!config.shouldSendMessage()) {return;}
-        audiences.player(event.getPlayer()).sendMessage(config.getMessage());
+        event.getPlayer().sendMessage(config.getMessage());
     }
 
 }

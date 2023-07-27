@@ -1,26 +1,23 @@
 package me.cooleg.disableelytraboost;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.NotNull;
 
 public class ReloadCommand implements CommandExecutor {
 
     private final DisableElytraBoost main;
 
-    private final Component message = Component.text("Reloaded successfully!").color(NamedTextColor.GREEN);
 
     public ReloadCommand(DisableElytraBoost main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
         main.reloadConfig();
-        main.getAudiences().sender(sender).sendMessage(message);
+        sender.sendMessage(ChatColor.GREEN + "Reloaded sucessfully!");
         return true;
     }
 

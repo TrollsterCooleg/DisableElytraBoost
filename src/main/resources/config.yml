@@ -1,9 +1,9 @@
 # Set to message you want to be sent when a player attempts to elytra boost without permission.
-# Uses minimessage. https://docs.advntr.dev/minimessage/format.html for more info.
+# Uses standard color codes. https://www.digminecraft.com/lists/color_list_pc.php
 
 # If you make message empty quotes, it won't send anything.
 
-message: "<red><bold>You cannot boost your elytra with fireworks!</bold></red>"
+message: "&4&lYou cannot boost your elytra with fireworks!"
 
 # List of worlds to explicitly allow/disallow flying with eltrya in.
 world-list: []
